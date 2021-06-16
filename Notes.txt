@@ -1,0 +1,24 @@
+
+Scaffold-DbContext "Server=Chandrasekhar;Database=BlogDB;UID=sa;PWD=sa;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+
+Scaffold-DbContext "Server=localhost;Database=BlogDB;Trusted_Connection=True;MultipleActiveResultSets=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models //Working 
+
+
+
+Server=localhost;Database=BlogDB;Trusted_Connection=True;MultipleActiveResultSets=true  
+
+
+USE BlogDB
+GO
+
+CREATE TABLE Category(ID INT PRIMARY KEY IDENTITY(1,1), NAME VARCHAR(255), SLUG VARCHAR(255));
+INSERT INTO Category(NAME, SLUG)  VALUES('CSHARP', 'csharp');
+INSERT INTO Category(NAME, SLUG)  VALUES('VISUAL STUDIO', 'visualstudio');
+INSERT INTO Category(NAME, SLUG)  VALUES('ASP.NET CORE', 'aspnetcore');
+INSERT INTO Category(NAME, SLUG)  VALUES('SQL SERVER','sqlserver');
+
+
+CREATE TABLE Post(POST_ID INT PRIMARY KEY IDENTITY(1,1), TITLE VARCHAR(2000), 
+DESCRIPTION VARCHAR(MAX), CATEGORY_ID INT FOREIGN KEY REFERENCES Category(ID), 
+CREATED_DATE DATETIME);
